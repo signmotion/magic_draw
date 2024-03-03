@@ -11,8 +11,8 @@ class InitializingManaEvent extends ManaEvent {
   const InitializingManaEvent();
 }
 
-class IncManaEvent extends ManaEvent {
-  const IncManaEvent({this.count = 1});
+class IncrementManaEvent extends ManaEvent {
+  const IncrementManaEvent({this.count = 1});
 
   final int count;
 
@@ -20,8 +20,8 @@ class IncManaEvent extends ManaEvent {
   List<Object?> get props => [...super.props, count];
 }
 
-class DecManaEvent extends ManaEvent {
-  const DecManaEvent({this.count = 1});
+class DecrementManaEvent extends ManaEvent {
+  const DecrementManaEvent({this.count = 1});
 
   final int count;
 

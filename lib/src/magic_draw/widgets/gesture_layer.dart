@@ -22,6 +22,6 @@ class GestureLayer extends StatelessWidget {
     logi(details.globalPosition);
 
     aimBloc.add(TapEffectAimEvent(position: details.localPosition));
-    manaBloc.add(const DecManaEvent());
+    manaBloc.add(const DecrementManaEvent());
   }
 }

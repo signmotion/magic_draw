@@ -1,11 +1,17 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart' hide Colors;
+import 'package:dart_helpers/dart_helpers.dart' hide Colors, NumDurationExt;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'widgets/content.dart';
+part 'widgets/sphere.dart';
+part 'widgets/wrapped_sphere.dart';
 
 part 'events.dart';
 part 'page.dart';
@@ -34,8 +40,8 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
       return switch (event) {
         // initializing events
         InitializingManaEvent e => _onInitializing(e, emit),
-        IncManaEvent e => _onInc(e, emit),
-        DecManaEvent e => _onDec(e, emit),
+        IncrementManaEvent e => _onIncrement(e, emit),
+        DecrementManaEvent e => _onDecrement(e, emit),
         WaitingManaEvent e => _onWaiting(e, emit),
 
         // unsupported event
@@ -54,17 +60,27 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     add(const WaitingManaEvent());
   }
 
-  Future<void> _onInc(
-    IncManaEvent event,
+  Future<void> _onIncrement(
+    IncrementManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    emit(state.copyWith(
-      count: (state.count + event.count).clamp(0, state.limitCount),
-    ));
+    if (event.count == 1) {
+      emit(state.copyWith(
+        count: (state.count + 1).clamp(0, state.limitCount),
+      ));
+      return;
+    }
+
+    // splitting by 1
+    var p = 0;
+    for (var i = 0; i < event.count; ++i) {
+      p += i * randomIntRange(60, 120);
+      Future.delayed(p.ms, () => add(const IncrementManaEvent()));
+    }
   }
 
-  Future<void> _onDec(
-    DecManaEvent event,
+  Future<void> _onDecrement(
+    DecrementManaEvent event,
     Emitter<ManaState> emit,
   ) async {
     emit(state.copyWith(

@@ -15,13 +15,7 @@ class ManaContent extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: Wrap(
         children: [
-          for (var i = 0; i < state.count; ++i)
-            Image.asset(
-              'assets/images/spheres/blue.webp',
-              width: width,
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high,
-            ),
+          for (var i = 0; i < state.count; ++i) WrappedSphere(width: width),
         ],
       ),
     );
