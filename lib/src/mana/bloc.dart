@@ -40,6 +40,7 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
       return switch (event) {
         // initializing events
         InitializingManaEvent e => _onInitializing(e, emit),
+        SetLimitCountManaEvent e => _onSetLimitCountManaEvent(e, emit),
         IncrementManaEvent e => _onIncrement(e, emit),
         DecrementManaEvent e => _onDecrement(e, emit),
         WaitingManaEvent e => _onWaiting(e, emit),
@@ -58,6 +59,13 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     Emitter<ManaState> emit,
   ) async {
     add(const WaitingManaEvent());
+  }
+
+  Future<void> _onSetLimitCountManaEvent(
+    SetLimitCountManaEvent event,
+    Emitter<ManaState> emit,
+  ) async {
+    emit(state.copyWith(limitCount: event.limitCount));
   }
 
   Future<void> _onIncrement(

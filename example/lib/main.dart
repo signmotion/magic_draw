@@ -33,14 +33,12 @@ class _AppState extends State<App> {
       ),
     );
 
-    md.manaBloc.add(const IncrementManaEvent(count: 12));
+    md.manaBloc
+      ..add(const SetLimitCountManaEvent(limitCount: 64))
+      ..add(const IncrementManaEvent(count: 12));
     Timer.periodic(
       2100.ms,
-      (timer) {
-        if (md.manaBloc.state.count < 24) {
-          md.manaBloc.add(const IncrementManaEvent());
-        }
-      },
+      (timer) => md.manaBloc.add(const IncrementManaEvent()),
     );
 
     md.aimBloc.add(
