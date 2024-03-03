@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:magic_draw/magic_draw.dart';
@@ -17,6 +19,7 @@ class _AppState extends State<App> {
     super.initState();
 
     md = MagicDraw();
+
     md.backgroundBloc.add(
       SetContentBackgroundEvent(
         child: Padding(
@@ -30,7 +33,15 @@ class _AppState extends State<App> {
       ),
     );
 
-    md.manaBloc.add(const AddManaEvent(count: 12));
+    md.manaBloc.add(const IncManaEvent(count: 12));
+    Timer.periodic(
+      2100.ms,
+      (timer) {
+        if (md.manaBloc.state.count < 24) {
+          md.manaBloc.add(const IncManaEvent());
+        }
+      },
+    );
 
     md.aimBloc.add(
       SetTapEffectAimEvent(

@@ -34,7 +34,8 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
       return switch (event) {
         // initializing events
         InitializingManaEvent e => _onInitializing(e, emit),
-        AddManaEvent e => _onAdd(e, emit),
+        IncManaEvent e => _onInc(e, emit),
+        DecManaEvent e => _onDec(e, emit),
         WaitingManaEvent e => _onWaiting(e, emit),
 
         // unsupported event
@@ -53,11 +54,22 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     add(const WaitingManaEvent());
   }
 
-  Future<void> _onAdd(
-    AddManaEvent event,
+  Future<void> _onInc(
+    IncManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    emit(state.copyWith(count: state.count + event.count));
+    emit(state.copyWith(
+      count: (state.count + event.count).clamp(0, state.limitCount),
+    ));
+  }
+
+  Future<void> _onDec(
+    DecManaEvent event,
+    Emitter<ManaState> emit,
+  ) async {
+    emit(state.copyWith(
+      count: (state.count - event.count).clamp(0, state.limitCount),
+    ));
   }
 
   Future<void> _onWaiting(
