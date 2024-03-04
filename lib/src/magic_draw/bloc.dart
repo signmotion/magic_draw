@@ -4,8 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../extensions/global_key.dart';
-
 import '../aim/bloc.dart';
 import '../background/bloc.dart';
 import '../mana/bloc.dart';
