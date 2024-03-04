@@ -156,6 +156,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  path_animation:
+    dependency: transitive
+    description:
+      name: path_animation
+      sha256: d57c012170cd1c0071b7271cc78feed2c73a834c6469698e2f6a0e47bafd80bd
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   provider:
     dependency: transitive
     description:
@@ -202,5 +210,5 @@ packages:
     source: hosted
     version: "2.1.4"
 sdks:
-  dart: ">=3.2.0-0 <4.0.0"
+  dart: ">=3.2.1 <4.0.0"
   flutter: ">=3.7.0-0.0"

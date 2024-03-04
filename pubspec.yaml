@@ -30,6 +30,7 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.5.0
   flutter_bloc: ^8.1.4
+  path_animation: ^1.0.3
 
 dev_dependencies:
   flutter_lints: ^3.0.1

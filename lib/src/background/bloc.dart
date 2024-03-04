@@ -32,7 +32,6 @@ class BackgroundBloc extends Bloc<BackgroundEvent, BackgroundState> {
 
     try {
       return switch (event) {
-        // initializing events
         InitializingBackgroundEvent e => _onInitializing(e, emit),
         SetContentBackgroundEvent e => _onSetContent(e, emit),
         WaitingBackgroundEvent e => _onWaiting(e, emit),

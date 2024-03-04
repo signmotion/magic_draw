@@ -7,9 +7,21 @@ abstract class PathEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-// system
 class InitializingPathEvent extends PathEvent {
   const InitializingPathEvent();
+}
+
+class ConstructPathEvent extends PathEvent {
+  const ConstructPathEvent({
+    required this.fromPosition,
+    required this.toPosition,
+  });
+
+  final Offset fromPosition;
+  final Offset toPosition;
+
+  @override
+  List<Object?> get props => [...super.props, fromPosition, toPosition];
 }
 
 class WaitingPathEvent extends PathEvent {

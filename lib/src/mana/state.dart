@@ -3,25 +3,30 @@ part of 'bloc.dart';
 class ManaState extends Equatable {
   const ManaState({
     this.state = ManaStateEnum.unspecified,
-    this.count = 0,
     this.limitCount = 1 << 32,
+    required this.pool,
+    required this.layout,
   });
 
   final ManaStateEnum state;
-  final int count;
   final int limitCount;
+
+  final ManaPool pool;
+  final ManaLayout layout;
 
   ManaState copyWith({
     ManaStateEnum? state,
-    int? count,
     int? limitCount,
+    ManaPool? pool,
+    ManaLayout? layout,
   }) =>
       ManaState(
         state: state ?? this.state,
-        count: count ?? this.count,
         limitCount: limitCount ?? this.limitCount,
+        pool: pool ?? this.pool,
+        layout: layout ?? this.layout,
       );
 
   @override
-  List<Object?> get props => [state, count, limitCount];
+  List<Object?> get props => [state, limitCount, pool, layout];
 }

@@ -1,7 +1,9 @@
 part of 'bloc.dart';
 
 class MagicDraw extends StatelessWidget {
-  MagicDraw({super.key});
+  MagicDraw({super.key}) {
+    EquatableConfig.stringify = true;
+  }
 
   final backgroundBloc = BackgroundBloc(
     state: const BackgroundState(state: BackgroundStateEnum.unspecified),
@@ -15,8 +17,14 @@ class MagicDraw extends StatelessWidget {
     state: const PathState(state: PathStateEnum.unspecified),
   );
 
+  static const columns = 12;
+  static const rows = 2;
+
   final manaBloc = ManaBloc(
-    state: const ManaState(state: ManaStateEnum.unspecified),
+    state: ManaState(
+      pool: ManaPool.empty(count: columns * rows),
+      layout: const TableManaLayout(columns: columns, rows: rows),
+    ),
   );
 
   @override

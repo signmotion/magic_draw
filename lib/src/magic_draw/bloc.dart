@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../extensions/global_key.dart';
+
 import '../aim/bloc.dart';
 import '../background/bloc.dart';
 import '../mana/bloc.dart';
@@ -47,7 +49,6 @@ class MDBloc extends Bloc<MDEvent, MDState> {
 
     try {
       return switch (event) {
-        // initializing events
         InitializingMDEvent e => _onInitializing(e, emit),
         WaitingMDEvent e => _onWaiting(e, emit),
 

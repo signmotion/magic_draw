@@ -15,13 +15,28 @@ class GestureLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTapDown: (TapDownDetails details) => onTapDown(context, details),
-        child: Container(color: Colors.white.withOpacity(0)),
+        child: Container(color: Colors.white.withOpacity(0.0)),
       );
 
   void onTapDown(BuildContext context, TapDownDetails details) {
     logi(details.globalPosition);
 
-    aimBloc.add(TapEffectAimEvent(position: details.localPosition));
-    manaBloc.add(const DecrementManaEvent());
+    final tapPosition = details.localPosition;
+    aimBloc.add(TapEffectAimEvent(position: tapPosition));
+
+    final pool = manaBloc.state.pool;
+    final filledCell = pool.filledCell();
+    final sphereData = pool.data[filledCell]!;
+    final manaPosition = sphereData.key.globalPaintBounds?.center;
+    logi('manaPosition $manaPosition');
+    final size = MediaQuery.of(context).size;
+    pathBloc.add(ConstructPathEvent(
+      fromPosition: const Offset(0, 0),
+      toPosition: Offset(size.width, size.height),
+      // fromPosition: manaPosition!,
+      // toPosition: details.localPosition,
+    ));
+
+    manaBloc.add(const DrainManaEvent());
   }
 }

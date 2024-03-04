@@ -1,20 +1,22 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart' hide Colors, NumDurationExt;
+import 'package:dart_helpers/dart_helpers.dart' hide Colors, Sphere;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../share/share.dart';
+
+part 'layouts/layout.dart';
+part 'layouts/rows.dart';
+
 part 'widgets/content.dart';
-part 'widgets/sphere.dart';
-part 'widgets/wrapped_sphere.dart';
 
 part 'events.dart';
 part 'page.dart';
+part 'pool.dart';
 part 'state_enum.dart';
 part 'state.dart';
 
@@ -38,11 +40,11 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
 
     try {
       return switch (event) {
-        // initializing events
         InitializingManaEvent e => _onInitializing(e, emit),
-        SetLimitCountManaEvent e => _onSetLimitCountManaEvent(e, emit),
-        IncrementManaEvent e => _onIncrement(e, emit),
-        DecrementManaEvent e => _onDecrement(e, emit),
+        SetNumberManaEvent e => _onSetNumber(e, emit),
+        SetLayoutManaEvent e => _onSetLayout(e, emit),
+        FillManaEvent e => _onFill(e, emit),
+        DrainManaEvent e => _onDrain(e, emit),
         WaitingManaEvent e => _onWaiting(e, emit),
 
         // unsupported event
@@ -61,39 +63,70 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     add(const WaitingManaEvent());
   }
 
-  Future<void> _onSetLimitCountManaEvent(
-    SetLimitCountManaEvent event,
+  Future<void> _onSetNumber(
+    SetNumberManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    emit(state.copyWith(limitCount: event.limitCount));
+    emit(state.copyWith(limitCount: event.number));
   }
 
-  Future<void> _onIncrement(
-    IncrementManaEvent event,
+  Future<void> _onSetLayout(
+    SetLayoutManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    if (event.count == 1) {
-      emit(state.copyWith(
-        count: (state.count + 1).clamp(0, state.limitCount),
-      ));
+    emit(state.copyWith(layout: event.layout));
+  }
+
+  Future<void> _onFill(
+    FillManaEvent event,
+    Emitter<ManaState> emit,
+  ) async {
+    // splitting by 1
+    if (event.count > 1) {
+      var delay = 0;
+      for (var i = 0; i < event.count; ++i) {
+        delay += i * randomIntRange(60, 120);
+        Future.delayed(delay.ms, () => add(const FillManaEvent()));
+      }
       return;
     }
 
-    // splitting by 1
-    var p = 0;
-    for (var i = 0; i < event.count; ++i) {
-      p += i * randomIntRange(60, 120);
-      Future.delayed(p.ms, () => add(const IncrementManaEvent()));
+    // always 1 mana
+    final freeCells = state.pool.freeCells();
+    if (freeCells.isEmpty) {
+      // all cells filled, just skip this event
+      return;
     }
+
+    // fill a random cell
+    state.pool.data[freeCells.first] = SphereData();
+    emit(state.copyWith(pool: ManaPool.filled(data: state.pool.data)));
   }
 
-  Future<void> _onDecrement(
-    DecrementManaEvent event,
+  Future<void> _onDrain(
+    DrainManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    emit(state.copyWith(
-      count: (state.count - event.count).clamp(0, state.limitCount),
-    ));
+    // splitting by 1
+    if (event.count > 1) {
+      var delay = 0;
+      for (var i = 0; i < event.count; ++i) {
+        delay += i * randomIntRange(60, 120);
+        Future.delayed(delay.ms, () => add(const DrainManaEvent()));
+      }
+      return;
+    }
+
+    // always 1 mana
+    final filledCells = state.pool.filledCells();
+    if (filledCells.isEmpty) {
+      // all cells empty, just skip this event
+      return;
+    }
+
+    // free a random cell
+    state.pool.data[filledCells.first] = null;
+    emit(state.copyWith(pool: ManaPool.filled(data: state.pool.data)));
   }
 
   Future<void> _onWaiting(

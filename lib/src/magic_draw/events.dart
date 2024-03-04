@@ -7,7 +7,6 @@ abstract class MDEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-// system
 class InitializingMDEvent extends MDEvent {
   const InitializingMDEvent();
 }

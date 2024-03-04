@@ -34,11 +34,19 @@ class _AppState extends State<App> {
     );
 
     md.manaBloc
-      ..add(const SetLimitCountManaEvent(limitCount: 64))
-      ..add(const IncrementManaEvent(count: 12));
+      ..add(const SetLayoutManaEvent(
+        layout: TableManaLayout(columns: 6, rows: 3),
+      ))
+      ..add(const SetNumberManaEvent(number: 64))
+      ..add(const FillManaEvent(count: 12));
     Timer.periodic(
       2100.ms,
-      (timer) => md.manaBloc.add(const IncrementManaEvent()),
+      (timer) {
+        if (md.manaBloc.state.pool.filledCells().length <
+            md.manaBloc.state.limitCount) {
+          md.manaBloc.add(const FillManaEvent());
+        }
+      },
     );
 
     md.aimBloc.add(

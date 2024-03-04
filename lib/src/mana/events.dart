@@ -11,17 +11,48 @@ class InitializingManaEvent extends ManaEvent {
   const InitializingManaEvent();
 }
 
-class SetLimitCountManaEvent extends ManaEvent {
-  const SetLimitCountManaEvent({this.limitCount = 1});
+class AddWidgetManaEvent extends ManaEvent {
+  const AddWidgetManaEvent({
+    required this.key,
+    required this.widget,
+  });
 
-  final int limitCount;
+  final GlobalKey key;
+  final Widget widget;
 
   @override
-  List<Object?> get props => [...super.props, limitCount];
+  List<Object?> get props => [...super.props, key, widget];
 }
 
-class IncrementManaEvent extends ManaEvent {
-  const IncrementManaEvent({this.count = 1});
+class RemoveWidgetManaEvent extends ManaEvent {
+  const RemoveWidgetManaEvent({required this.key});
+
+  final GlobalKey key;
+
+  @override
+  List<Object?> get props => [...super.props, key];
+}
+
+class SetNumberManaEvent extends ManaEvent {
+  const SetNumberManaEvent({this.number = 1});
+
+  final int number;
+
+  @override
+  List<Object?> get props => [...super.props, number];
+}
+
+class SetLayoutManaEvent extends ManaEvent {
+  const SetLayoutManaEvent({required this.layout});
+
+  final ManaLayout layout;
+
+  @override
+  List<Object?> get props => [...super.props, layout];
+}
+
+class FillManaEvent extends ManaEvent {
+  const FillManaEvent({this.count = 1});
 
   final int count;
 
@@ -29,8 +60,8 @@ class IncrementManaEvent extends ManaEvent {
   List<Object?> get props => [...super.props, count];
 }
 
-class DecrementManaEvent extends ManaEvent {
-  const DecrementManaEvent({this.count = 1});
+class DrainManaEvent extends ManaEvent {
+  const DrainManaEvent({this.count = 1});
 
   final int count;
 
