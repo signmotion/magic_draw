@@ -2,7 +2,7 @@ part of 'bloc.dart';
 
 /// The pool with predefined cells with widgets.
 class ManaPool extends Equatable {
-  ManaPool.empty({required int count})
+  ManaPool.empty({int count = 12})
       : assert(count > 0),
         data = List.filled(count, null);
 

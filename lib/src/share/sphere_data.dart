@@ -3,11 +3,8 @@ part of 'share.dart';
 /// Each sphere has an own behaviour.
 class SphereData {
   SphereData()
-      : key = GlobalKey(),
-        period = randomIntRange(minPeriod, maxPeriod),
+      : period = randomIntRange(minPeriod, maxPeriod),
         duration = randomIntRange(minDuration, maxDuration);
-
-  final GlobalKey key;
 
   static const minPeriod = 1200 * 1;
   static const maxPeriod = minPeriod + minPeriod * 2;

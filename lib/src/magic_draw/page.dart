@@ -17,13 +17,10 @@ class MagicDraw extends StatelessWidget {
     state: const PathState(state: PathStateEnum.unspecified),
   );
 
-  static const columns = 12;
-  static const rows = 2;
-
   final manaBloc = ManaBloc(
     state: ManaState(
-      pool: ManaPool.empty(count: columns * rows),
-      layout: const TableManaLayout(columns: columns, rows: rows),
+      pool: ManaPool.empty(),
+      layout: const WrapManaLayout(),
     ),
   );
 

@@ -54,7 +54,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_animate:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_animate
       sha256: "7c8a6594a9252dad30cc2ef16e33270b6248c4dedc3b3d06c86c4f3f4dc05ae5"
@@ -172,6 +172,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
+  responsive_sizer:
+    dependency: "direct main"
+    description:
+      name: responsive_sizer
+      sha256: ecc518f6f30faf28bdc15f94e13a6c53d38c1c202eec9b1d4c3d1843d143788e
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0+1"
   sky_engine:
     dependency: transitive
     description: flutter

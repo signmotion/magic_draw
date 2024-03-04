@@ -4,14 +4,16 @@ class Sphere extends StatelessWidget {
   const Sphere({
     super.key,
     required this.data,
+    required this.width,
+    required this.height,
   });
 
   final SphereData data;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
-    final (width, height) = sizeSphereMana(context);
-
     return Image.asset(
       'assets/images/spheres/${data.color}.webp',
       fit: BoxFit.cover,
@@ -19,11 +21,4 @@ class Sphere extends StatelessWidget {
       height: height,
     ).animate().fadeIn(duration: 1200.ms, curve: Curves.easeInSine);
   }
-}
-
-(double, double) sizeSphereMana(BuildContext context) {
-  final size = sizeWrappedSphereMana(context);
-  const k = 0.84;
-
-  return (size.$1 * k, size.$2 * k);
 }

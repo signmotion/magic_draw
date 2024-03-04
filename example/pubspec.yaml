@@ -18,8 +18,10 @@ dependencies:
     path: ../../dart_helpers
   flutter:
     sdk: flutter
+  flutter_animate: ^4.5.0
   magic_draw:
     path: ../../magic_draw
+  responsive_sizer: ^3.3.0+1
 
 dev_dependencies:
   flutter_lints: ^3.0.1

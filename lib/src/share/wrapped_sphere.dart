@@ -5,24 +5,25 @@ class WrappedSphere extends StatefulWidget {
   const WrappedSphere({
     super.key,
     required this.data,
+    required this.width,
+    required this.height,
+    this.k = 0.84,
   });
 
   final SphereData data;
+  final double width;
+  final double height;
+  final double k;
 
   @override
   State<WrappedSphere> createState() => _WrappedSphereState();
 }
 
 class _WrappedSphereState extends State<WrappedSphere> {
-  (double, double)? size;
-  double get width => size!.$1;
-  double get height => size!.$2;
+  double get sphereWidth => widget.width * widget.k;
+  double get sphereHeight => widget.height * widget.k;
 
-  (double, double)? sizeSphere;
-  double get sphereWidth => sizeSphere!.$1;
-  double get sphereHeight => sizeSphere!.$2;
-
-  int get maxDelta => (width - sphereWidth).floor();
+  int get maxDelta => (widget.width - sphereWidth).floor();
 
   var dx = 0.0;
   var dy = 0.0;
@@ -46,35 +47,25 @@ class _WrappedSphereState extends State<WrappedSphere> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    size ??= sizeWrappedSphereMana(context);
-    sizeSphere ??= sizeSphereMana(context);
-
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        children: [
-          AnimatedPositioned(
-            width: sphereWidth,
-            height: sphereHeight,
-            left: dx,
-            top: dy,
-            duration: widget.data.duration.ms,
-            curve: curve,
-            child: Sphere(data: widget.data),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-(double, double) sizeWrappedSphereMana(BuildContext context) {
-  final size = MediaQuery.of(context).size;
-  const scale = 1.0;
-  final width = size.width * scale / 12 / 2 / size.aspectRatio;
-  final height = size.height * scale / 12 / 2;
-
-  return (width, height);
+  Widget build(BuildContext context) => SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: Stack(
+          children: [
+            AnimatedPositioned(
+              width: sphereWidth,
+              height: sphereHeight,
+              left: dx,
+              top: dy,
+              duration: widget.data.duration.ms,
+              curve: curve,
+              child: Sphere(
+                data: widget.data,
+                width: sphereWidth,
+                height: sphereHeight,
+              ),
+            ),
+          ],
+        ),
+      );
 }
