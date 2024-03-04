@@ -28,19 +28,22 @@ class GestureLayer extends StatelessWidget {
       return;
     }
 
-    final sphereData = pool.data[filledCell]!;
-    // final manaPosition = sphereData.key.globalPaintBounds?.center;
-    // logi('manaPosition $manaPosition');
-    // final size = MediaQuery.of(context).size;
-    // pathBloc.add(ConstructPathEvent(
-    //   fromPosition: const Offset(0, 0),
-    //   toPosition: Offset(size.width, size.height),
-    //   // fromPosition: manaPosition!,
-    //   // toPosition: details.localPosition,
-    // ));
-
     final tapPosition = details.localPosition;
     aimBloc.add(TapEffectAimEvent(position: tapPosition));
+
+    /* TODO
+    final sphereData = pool.data[filledCell]!;
+    final size = MediaQuery.of(context).size;
+    // TODO(sign): Detect a real mana position.
+    final manaPosition = Offset(size.width / 2, size.height);
+    logi('manaPosition $manaPosition -> tapPosition $tapPosition');
+    pathBloc.add(ConstructPathEvent(
+      fromPosition: manaPosition,
+      toPosition: Offset(tapPosition.dx, 0),
+      // fromPosition: manaPosition!,
+      // toPosition: tapPosition,
+    ));
+    */
 
     manaBloc.add(const DrainManaEvent());
   }

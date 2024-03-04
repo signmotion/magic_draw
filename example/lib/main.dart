@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:magic_draw/magic_draw.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() => runApp(const App());
 
@@ -68,17 +67,15 @@ class _AppState extends State<App> {
   late final MagicDraw md;
 
   @override
-  Widget build(BuildContext context) => ResponsiveSizer(
-        builder: (context, orientation, screenType) => MaterialApp(
-          home: Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: Colors.black,
-            body: SafeArea(
-              maintainBottomViewPadding: true,
-              child: md,
-            ),
+  Widget build(BuildContext context) => MaterialApp(
+        home: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: Colors.black,
+          body: SafeArea(
+            maintainBottomViewPadding: true,
+            child: md,
           ),
-          debugShowCheckedModeBanner: false,
         ),
+        debugShowCheckedModeBanner: false,
       );
 }

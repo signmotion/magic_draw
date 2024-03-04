@@ -4,8 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_animation/path_anmation.dart';
-
-import '../share/share.dart';
+import 'package:path_animation/widget/path_painter.dart';
 
 part 'widgets/content.dart';
 
