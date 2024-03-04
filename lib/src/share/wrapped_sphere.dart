@@ -30,8 +30,6 @@ class _WrappedSphereState extends State<WrappedSphere> {
 
   Curve get curve => Curves.easeInSine;
 
-  late final Timer timer;
-
   @override
   void initState() {
     super.initState();
@@ -47,6 +45,8 @@ class _WrappedSphereState extends State<WrappedSphere> {
       ),
     );
   }
+
+  late final Timer timer;
 
   @override
   Widget build(BuildContext context) => SizedBox(

@@ -37,7 +37,7 @@ class _AppState extends State<App> {
       ..add(const SetLayoutManaEvent(layout: WrapManaLayout()))
       ..add(const SetNumberManaEvent(number: 64))
       ..add(const FillManaEvent(count: 12));
-    Timer.periodic(
+    timer = Timer.periodic(
       2100.ms,
       (timer) {
         if (md.manaBloc.state.pool.filledCells().length <
@@ -62,6 +62,7 @@ class _AppState extends State<App> {
   }
 
   late final MagicDraw md;
+  late final Timer timer;
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -75,4 +76,11 @@ class _AppState extends State<App> {
         ),
         debugShowCheckedModeBanner: false,
       );
+
+  @override
+  void dispose() {
+    timer.cancel();
+
+    super.dispose();
+  }
 }
