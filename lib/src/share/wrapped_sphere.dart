@@ -30,11 +30,13 @@ class _WrappedSphereState extends State<WrappedSphere> {
 
   Curve get curve => Curves.easeInSine;
 
+  late final Timer timer;
+
   @override
   void initState() {
     super.initState();
 
-    Timer.periodic(
+    timer = Timer.periodic(
       widget.data.period.ms,
       (timer) => setState(
         () {
@@ -68,4 +70,11 @@ class _WrappedSphereState extends State<WrappedSphere> {
           ],
         ),
       );
+
+  @override
+  void dispose() {
+    timer.cancel();
+
+    super.dispose();
+  }
 }
