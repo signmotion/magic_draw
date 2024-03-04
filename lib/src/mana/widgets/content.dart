@@ -10,6 +10,6 @@ class ManaContent extends StatelessWidget {
 
   Widget content(BuildContext context, ManaState state) => Padding(
         padding: const EdgeInsets.all(12),
-        child: state.layout.build(state.pool),
+        child: state.layout.build(context, state.pool),
       );
 }

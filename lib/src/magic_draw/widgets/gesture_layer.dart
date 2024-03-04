@@ -15,7 +15,7 @@ class GestureLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTapDown: (TapDownDetails details) => onTapDown(context, details),
-        child: Container(color: Colors.white.withOpacity(0.0)),
+        child: ColoredBox(color: Colors.white.withOpacity(0.0)),
       );
 
   void onTapDown(BuildContext context, TapDownDetails details) {
