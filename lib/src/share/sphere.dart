@@ -19,6 +19,15 @@ class Sphere extends StatelessWidget {
       fit: BoxFit.cover,
       width: width,
       height: height,
-    ).animate().fadeIn(duration: 1200.ms, curve: Curves.easeInSine);
+    );
   }
+}
+
+(double, double) sphereSize(BuildContext context) {
+  final screenSize = MediaQuery.of(context).size;
+
+  return (
+    screenSize.width / 12,
+    screenSize.height / 12 * screenSize.aspectRatio,
+  );
 }

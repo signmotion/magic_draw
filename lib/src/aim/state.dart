@@ -1,8 +1,7 @@
 part of 'bloc.dart';
 
 typedef TapEffectBuilder = Widget Function({
-  required double width,
-  required double height,
+  required BuildContext context,
 });
 
 class AimState extends Equatable {

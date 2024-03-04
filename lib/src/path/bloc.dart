@@ -1,10 +1,12 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart' hide Colors, Sphere;
+import 'package:dart_helpers/dart_helpers.dart'
+    hide Colors, NumDurationExt, Sphere;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_animation/path_anmation.dart';
-import 'package:path_animation/widget/path_painter.dart';
+
+import '../share/share.dart';
 
 part 'widgets/content.dart';
 
@@ -63,10 +65,12 @@ class PathBloc extends Bloc<PathEvent, PathState> {
     // final path = Path()
     //   ..moveTo(from.dx, from.dy)
     //   ..quadraticBezierTo(middle.dx, middle.dy, to.dx, to.dy);
-    final path = Path()
-      ..moveTo(from.dx, from.dy)
-      ..lineTo(to.dx, to.dy);
-    emit(state.copyWith(path: path));
+    emit(state.copyWith(
+      pathData: [
+        ...state.pathData,
+        PathData(from: from, to: to, path: null),
+      ],
+    ));
   }
 
   Future<void> _onWaiting(

@@ -31,19 +31,15 @@ class GestureLayer extends StatelessWidget {
     final tapPosition = details.localPosition;
     aimBloc.add(TapEffectAimEvent(position: tapPosition));
 
-    /* TODO
-    final sphereData = pool.data[filledCell]!;
+    //final sphereData = pool.data[filledCell]!;
     final size = MediaQuery.of(context).size;
     // TODO(sign): Detect a real mana position.
     final manaPosition = Offset(size.width / 2, size.height);
     logi('manaPosition $manaPosition -> tapPosition $tapPosition');
     pathBloc.add(ConstructPathEvent(
       fromPosition: manaPosition,
-      toPosition: Offset(tapPosition.dx, 0),
-      // fromPosition: manaPosition!,
-      // toPosition: tapPosition,
+      toPosition: tapPosition,
     ));
-    */
 
     manaBloc.add(const DrainManaEvent());
   }

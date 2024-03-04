@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../magic_draw.dart';
+
 part 'widgets/content.dart';
 
 part 'events.dart';

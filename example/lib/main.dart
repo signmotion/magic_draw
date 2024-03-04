@@ -48,19 +48,16 @@ class _AppState extends State<App> {
     );
 
     md.aimBloc.add(
-      SetTapEffectAimEvent(
-        effectBuilder: ({
-          required double width,
-          required double height,
-        }) =>
-            Image.asset(
-          key: UniqueKey(),
-          'assets/images/spheres/blue.webp',
-          fit: BoxFit.cover,
+      SetTapEffectAimEvent(effectBuilder: ({
+        required BuildContext context,
+      }) {
+        final (width, height) = sphereSize(context);
+        return Sphere(
+          data: SphereData(),
           width: width,
           height: height,
-        ).animate().fadeOut(duration: 1200.ms),
-      ),
+        ).animate().fadeOut(duration: 1200.ms, curve: Curves.easeInSine);
+      }),
     );
   }
 

@@ -5,11 +5,7 @@ class WrapManaLayout extends ManaLayout {
 
   @override
   Widget build(BuildContext context, ManaPool pool) {
-    final screenSize = MediaQuery.of(context).size;
-    final (width, height) = (
-      screenSize.width / 12,
-      screenSize.height / 12 * screenSize.aspectRatio,
-    );
+    final (width, height) = sphereSize(context);
 
     return Wrap(
       alignment: WrapAlignment.center,
@@ -24,7 +20,18 @@ class WrapManaLayout extends ManaLayout {
                   data: pool.data[i]!,
                   width: width,
                   height: height,
-                ),
+                )
+                  .animate()
+                  .fadeIn(
+                    duration: (1200 * 3 / 2).ms,
+                    curve: Curves.easeInSine,
+                  )
+                  .move(
+                    begin: Offset(0, height * 4),
+                    end: const Offset(0, 0),
+                    duration: 1200.ms,
+                    curve: Curves.easeInSine,
+                  ),
       ],
     );
   }

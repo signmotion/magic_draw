@@ -12,7 +12,7 @@ class AimContent extends StatelessWidget {
       );
 
   Widget content(BuildContext context, AimState state) {
-    final (width, height) = size(context);
+    final (width, height) = sphereSize(context);
 
     if (state.tapEffectPositions.length > state.tapEffectWidgets.length) {
       final position = state.tapEffectPositions.last;
@@ -21,21 +21,12 @@ class AimContent extends StatelessWidget {
               widget: Positioned(
                 left: position.dx - width / 2,
                 top: position.dy - height / 2,
-                child: state.tapEffectBuilder!(width: width, height: height),
+                child: state.tapEffectBuilder!(context: context),
               ),
             ),
           );
     }
 
     return Stack(children: state.tapEffectWidgets);
-  }
-
-  static (double, double) size(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    const scale = 1.0;
-    final width = size.width * scale / 12 / 2 / size.aspectRatio;
-    final height = size.height * scale / 12 / 2;
-
-    return (width, height);
   }
 }
