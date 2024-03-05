@@ -24,7 +24,7 @@ This package is open-source, stable and well-tested. Development happens on
 or create a pull-request there.
 
 General questions are best asked on
-[StackOverflow](https://stackoverflow.com/search?q=%5Btitle%5D+flutter).
+[StackOverflow](https://stackoverflow.com/questions/tagged/magic_draw).
 
 ## TODO
 
