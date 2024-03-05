@@ -33,13 +33,13 @@ class RemoveWidgetManaEvent extends ManaEvent {
   List<Object?> get props => [...super.props, key];
 }
 
-class SetNumberManaEvent extends ManaEvent {
-  const SetNumberManaEvent({this.number = 1});
+class SetPoolSizeManaEvent extends ManaEvent {
+  const SetPoolSizeManaEvent({this.size = 1});
 
-  final int number;
+  final int size;
 
   @override
-  List<Object?> get props => [...super.props, number];
+  List<Object?> get props => [...super.props, size];
 }
 
 class SetLayoutManaEvent extends ManaEvent {

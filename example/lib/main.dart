@@ -33,15 +33,15 @@ class _AppState extends State<App> {
       ),
     );
 
+    const n = 33;
     md.manaBloc
       ..add(const SetLayoutManaEvent(layout: WrapManaLayout()))
-      ..add(const SetNumberManaEvent(number: 64))
-      ..add(const FillManaEvent(count: 12));
+      ..add(const SetPoolSizeManaEvent(size: n))
+      ..add(const FillManaEvent(count: n));
     timer = Timer.periodic(
       2100.ms,
       (timer) {
-        if (md.manaBloc.state.pool.filledCells().length <
-            md.manaBloc.state.limitCount) {
+        if (!md.manaBloc.state.pool.isFilled) {
           md.manaBloc.add(const FillManaEvent());
         }
       },

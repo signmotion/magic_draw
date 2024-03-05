@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dart_helpers/dart_helpers.dart'
@@ -43,7 +44,7 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     try {
       return switch (event) {
         InitializingManaEvent e => _onInitializing(e, emit),
-        SetNumberManaEvent e => _onSetNumber(e, emit),
+        SetPoolSizeManaEvent e => _onSetPoolSize(e, emit),
         SetLayoutManaEvent e => _onSetLayout(e, emit),
         FillManaEvent e => _onFill(e, emit),
         DrainManaEvent e => _onDrain(e, emit),
@@ -65,11 +66,11 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     add(const WaitingManaEvent());
   }
 
-  Future<void> _onSetNumber(
-    SetNumberManaEvent event,
+  Future<void> _onSetPoolSize(
+    SetPoolSizeManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    emit(state.copyWith(limitCount: event.number));
+    emit(state.copyWith(pool: state.pool.resized(event.size)));
   }
 
   Future<void> _onSetLayout(
@@ -83,52 +84,54 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
     FillManaEvent event,
     Emitter<ManaState> emit,
   ) async {
+    if (state.pool.isFilled) {
+      // all cells filled, just skip this event
+      return;
+    }
+
     // splitting by 1
     if (event.count > 1) {
       var delay = 0;
       for (var i = 0; i < event.count; ++i) {
-        delay += i * randomIntRange(60, 120);
+        delay += randomIntRange(60, 120);
         Future.delayed(delay.ms, () => add(const FillManaEvent()));
       }
       return;
     }
 
     // always 1 mana
-    final freeCells = state.pool.freeCells();
-    if (freeCells.isEmpty) {
-      // all cells filled, just skip this event
-      return;
-    }
 
     // fill a random cell
+    final freeCells = state.pool.freeCells();
     state.pool.data[freeCells.first] = SphereData();
-    emit(state.copyWith(pool: ManaPool.filled(data: state.pool.data)));
+    emit(state.copyWith(pool: state.pool.refilled(state.pool.data)));
   }
 
   Future<void> _onDrain(
     DrainManaEvent event,
     Emitter<ManaState> emit,
   ) async {
+    if (state.pool.isEmpty) {
+      // all cells empty, just skip this event
+      return;
+    }
+
     // splitting by 1
     if (event.count > 1) {
       var delay = 0;
       for (var i = 0; i < event.count; ++i) {
-        delay += i * randomIntRange(60, 120);
+        delay += randomIntRange(60, 120);
         Future.delayed(delay.ms, () => add(const DrainManaEvent()));
       }
       return;
     }
 
     // always 1 mana
-    final filledCells = state.pool.filledCells();
-    if (filledCells.isEmpty) {
-      // all cells empty, just skip this event
-      return;
-    }
 
     // free a random cell
+    final filledCells = state.pool.filledCells();
     state.pool.data[filledCells.first] = null;
-    emit(state.copyWith(pool: ManaPool.filled(data: state.pool.data)));
+    emit(state.copyWith(pool: state.pool.refilled(state.pool.data)));
   }
 
   Future<void> _onWaiting(

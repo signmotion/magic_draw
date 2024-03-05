@@ -2,20 +2,47 @@ part of 'bloc.dart';
 
 /// The pool with predefined cells with widgets.
 class ManaPool extends Equatable {
-  ManaPool.empty({int count = 12})
-      : assert(count > 0),
-        data = List.filled(count, null);
+  ManaPool({
+    int? size,
+    List<SphereData?>? data,
+  })  : assert(size != null || data != null,
+            'Should be defiend `size` or `data`.'),
+        assert(size != null && size > 0),
+        assert(data == null || (size != null && size >= data.length)),
+        data = List.filled(size ?? data!.length, null) {
+    for (var i = 0; i < (data?.length ?? 0); ++i) {
+      this.data[i] = data![i];
+    }
+  }
 
-  ManaPool.filled({required this.data}) : assert(data.isNotEmpty);
+  /// Copy resized with [newSize].
+  ManaPool resized(int newSize) => ManaPool(size: newSize, data: data);
 
-  late final List<SphereData?> data;
+  /// Copy refilled with [newData].
+  ManaPool refilled(List<SphereData?> newData) =>
+      ManaPool(size: max(data.length, size), data: newData);
 
-  int get count => data.length;
+  final List<SphereData?> data;
 
-  List<SphereData> get filledData => [
-        for (final d in data)
-          if (d != null) d
-      ];
+  int get size => data.length;
+
+  List<SphereData> filledData({shuffle = true}) {
+    final r = [
+      for (final d in data)
+        if (d != null) d
+    ];
+    if (shuffle) {
+      r.shuffle();
+    }
+
+    return r;
+  }
+
+  /// Fully empty.
+  bool get isEmpty => filledCells().isEmpty;
+
+  /// Fully filled.
+  bool get isFilled => freeCells().isEmpty;
 
   /// Returns `-1` if all cells are empty.
   int filledCell({random = true}) {
@@ -76,5 +103,5 @@ class ManaPool extends Equatable {
   }
 
   @override
-  List<Object?> get props => [count, filledCells];
+  List<Object?> get props => [size, filledCells];
 }

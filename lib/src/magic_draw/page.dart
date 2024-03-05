@@ -5,6 +5,8 @@ class MagicDraw extends StatelessWidget {
     EquatableConfig.stringify = true;
   }
 
+  static const defaultPoolSize = 12;
+
   final backgroundBloc = BackgroundBloc(
     state: const BackgroundState(state: BackgroundStateEnum.unspecified),
   );
@@ -19,7 +21,7 @@ class MagicDraw extends StatelessWidget {
 
   final manaBloc = ManaBloc(
     state: ManaState(
-      pool: ManaPool.empty(),
+      pool: ManaPool(size: defaultPoolSize),
       layout: const WrapManaLayout(),
     ),
   );
