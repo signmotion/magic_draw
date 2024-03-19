@@ -18,9 +18,9 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
 
-    md = MagicDraw();
+    magic = MagicDraw();
 
-    md.backgroundBloc.add(
+    magic.background.add(
       SetContentBackgroundEvent(
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -34,20 +34,20 @@ class _AppState extends State<App> {
     );
 
     const n = 33;
-    md.manaBloc
+    magic.mana
       ..add(const SetLayoutManaEvent(layout: WrapManaLayout()))
       ..add(const SetPoolSizeManaEvent(size: n))
       ..add(const FillManaEvent(count: n));
     timer = Timer.periodic(
       2100.ms,
       (timer) {
-        if (!md.manaBloc.state.pool.isFilled) {
-          md.manaBloc.add(const FillManaEvent());
+        if (!magic.mana.state.pool.isFilled) {
+          magic.mana.add(const FillManaEvent());
         }
       },
     );
 
-    md.aimBloc.add(
+    magic.aim.add(
       SetTapEffectAimEvent(effectBuilder: ({
         required BuildContext context,
       }) {
@@ -61,7 +61,7 @@ class _AppState extends State<App> {
     );
   }
 
-  late final MagicDraw md;
+  late final MagicDraw magic;
   late final Timer timer;
 
   @override
@@ -71,7 +71,7 @@ class _AppState extends State<App> {
           backgroundColor: Colors.black,
           body: SafeArea(
             maintainBottomViewPadding: true,
-            child: md,
+            child: magic,
           ),
         ),
         debugShowCheckedModeBanner: false,

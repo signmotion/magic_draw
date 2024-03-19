@@ -7,19 +7,19 @@ class MagicDraw extends StatelessWidget {
 
   static const defaultPoolSize = 12;
 
-  final backgroundBloc = BackgroundBloc(
+  final background = BackgroundBloc(
     state: const BackgroundState(state: BackgroundStateEnum.unspecified),
   );
 
-  final aimBloc = AimBloc(
+  final aim = AimBloc(
     state: const AimState(state: AimStateEnum.unspecified),
   );
 
-  final pathBloc = PathBloc(
+  final path = PathBloc(
     state: const PathState(state: PathStateEnum.unspecified),
   );
 
-  final manaBloc = ManaBloc(
+  final mana = ManaBloc(
     state: ManaState(
       pool: ManaPool(size: defaultPoolSize),
       layout: const WrapManaLayout(),
@@ -30,16 +30,16 @@ class MagicDraw extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
         create: (context) => MDBloc(
           state: const MDState(state: MDStateEnum.unspecified),
-          backgroundBloc: backgroundBloc,
-          aimBloc: aimBloc,
-          pathBloc: pathBloc,
-          manaBloc: manaBloc,
+          background: background,
+          aim: aim,
+          path: path,
+          mana: mana,
         )..add(const InitializingMDEvent()),
         child: MDContent(
-          backgroundBloc: backgroundBloc,
-          aimBloc: aimBloc,
-          pathBloc: pathBloc,
-          manaBloc: manaBloc,
+          backgroundBloc: background,
+          aimBloc: aim,
+          pathBloc: path,
+          manaBloc: mana,
         ),
       );
 }

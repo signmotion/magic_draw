@@ -20,10 +20,10 @@ part 'state.dart';
 class MDBloc extends Bloc<MDEvent, MDState> {
   MDBloc({
     required MDState state,
-    required this.backgroundBloc,
-    required this.aimBloc,
-    required this.pathBloc,
-    required this.manaBloc,
+    required this.background,
+    required this.aim,
+    required this.path,
+    required this.mana,
   }) : super(state) {
     on<MDEvent>(
       _onEvent,
@@ -31,10 +31,10 @@ class MDBloc extends Bloc<MDEvent, MDState> {
     );
   }
 
-  final BackgroundBloc backgroundBloc;
-  final AimBloc aimBloc;
-  final PathBloc pathBloc;
-  final ManaBloc manaBloc;
+  final BackgroundBloc background;
+  final AimBloc aim;
+  final PathBloc path;
+  final ManaBloc mana;
 
   Future<void> _onEvent(
     MDEvent event,
