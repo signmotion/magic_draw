@@ -1,4 +1,4 @@
-part of 'share.dart';
+part of '../share.dart';
 
 /// Each sphere has an own behaviour.
 class SphereData {

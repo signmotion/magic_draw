@@ -9,13 +9,9 @@ class BackgroundPage extends StatelessWidget {
   final BackgroundBloc backgroundBloc;
 
   @override
-  Widget build(BuildContext context) {
-    logi('Build content $runtimeType');
-
-    return BlocProvider(
-      create: (context) =>
-          backgroundBloc..add(const InitializingBackgroundEvent()),
-      child: const BackgroundContent(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) =>
+            backgroundBloc..add(const InitializingBackgroundEvent()),
+        child: const BackgroundContent(),
+      );
 }

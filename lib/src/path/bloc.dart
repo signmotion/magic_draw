@@ -1,6 +1,4 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart'
-    hide Colors, NumDurationExt, Sphere;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -23,16 +21,12 @@ class PathBloc extends Bloc<PathEvent, PathState> {
       _onEvent,
       transformer: sequential(),
     );
-
-    logi('$runtimeType created with state `$state`.');
   }
 
   Future<void> _onEvent(
     PathEvent event,
     Emitter<PathState> emit,
   ) async {
-    logi('$event');
-
     try {
       return switch (event) {
         InitializingPathEvent e => _onInitializing(e, emit),
@@ -43,8 +37,8 @@ class PathBloc extends Bloc<PathEvent, PathState> {
         PathEvent e => throw UnsupportedError('$e'),
       };
     } catch (ex) {
-      loge(ex);
       add(const WaitingPathEvent());
+      rethrow;
     }
   }
 

@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart'
-    hide Colors, NumDurationExt, Sphere;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -31,16 +29,12 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
       _onEvent,
       transformer: sequential(),
     );
-
-    logi('$runtimeType created with state `$state`.');
   }
 
   Future<void> _onEvent(
     ManaEvent event,
     Emitter<ManaState> emit,
   ) async {
-    logi('$event');
-
     try {
       return switch (event) {
         InitializingManaEvent e => _onInitializing(e, emit),
@@ -54,8 +48,8 @@ class ManaBloc extends Bloc<ManaEvent, ManaState> {
         ManaEvent e => throw UnsupportedError('$e'),
       };
     } catch (ex) {
-      loge(ex);
       add(const WaitingManaEvent());
+      rethrow;
     }
   }
 

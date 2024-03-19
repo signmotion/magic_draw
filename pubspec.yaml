@@ -23,8 +23,6 @@ environment:
 
 dependencies:
   bloc_concurrency: ^0.2.4
-  dart_helpers:
-    path: ../dart_helpers
   equatable: ^2.0.5
   flutter:
     sdk: flutter

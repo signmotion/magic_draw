@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../share.dart';
 
 extension GlobalKeyExt on GlobalKey {
   /// Returns a global bounds as [Rect].

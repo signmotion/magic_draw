@@ -9,12 +9,8 @@ class ManaPage extends StatelessWidget {
   final ManaBloc manaBloc;
 
   @override
-  Widget build(BuildContext context) {
-    logi('Build content $runtimeType');
-
-    return BlocProvider(
-      create: (context) => manaBloc..add(const InitializingManaEvent()),
-      child: const ManaContent(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => manaBloc..add(const InitializingManaEvent()),
+        child: const ManaContent(),
+      );
 }

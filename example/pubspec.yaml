@@ -14,8 +14,6 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  dart_helpers:
-    path: ../../dart_helpers
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0

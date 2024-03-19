@@ -27,23 +27,19 @@ class MagicDraw extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) {
-    logi('Build content $runtimeType');
-
-    return BlocProvider(
-      create: (context) => MDBloc(
-        state: const MDState(state: MDStateEnum.unspecified),
-        backgroundBloc: backgroundBloc,
-        aimBloc: aimBloc,
-        pathBloc: pathBloc,
-        manaBloc: manaBloc,
-      )..add(const InitializingMDEvent()),
-      child: MDContent(
-        backgroundBloc: backgroundBloc,
-        aimBloc: aimBloc,
-        pathBloc: pathBloc,
-        manaBloc: manaBloc,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => MDBloc(
+          state: const MDState(state: MDStateEnum.unspecified),
+          backgroundBloc: backgroundBloc,
+          aimBloc: aimBloc,
+          pathBloc: pathBloc,
+          manaBloc: manaBloc,
+        )..add(const InitializingMDEvent()),
+        child: MDContent(
+          backgroundBloc: backgroundBloc,
+          aimBloc: aimBloc,
+          pathBloc: pathBloc,
+          manaBloc: manaBloc,
+        ),
+      );
 }

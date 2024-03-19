@@ -1,5 +1,4 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart' hide Colors;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +29,6 @@ class MDBloc extends Bloc<MDEvent, MDState> {
       _onEvent,
       transformer: sequential(),
     );
-
-    logi('$runtimeType created with state `$state`.');
   }
 
   final BackgroundBloc backgroundBloc;
@@ -43,8 +40,6 @@ class MDBloc extends Bloc<MDEvent, MDState> {
     MDEvent event,
     Emitter<MDState> emit,
   ) async {
-    logi('$event');
-
     try {
       return switch (event) {
         InitializingMDEvent e => _onInitializing(e, emit),
@@ -54,8 +49,8 @@ class MDBloc extends Bloc<MDEvent, MDState> {
         MDEvent e => throw UnsupportedError('$e'),
       };
     } catch (ex) {
-      loge(ex);
       add(const WaitingMDEvent());
+      rethrow;
     }
   }
 

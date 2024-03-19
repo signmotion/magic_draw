@@ -1,5 +1,4 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:dart_helpers/dart_helpers.dart' hide Colors;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,19 +21,14 @@ class AimBloc extends Bloc<AimEvent, AimState> {
       _onEvent,
       transformer: sequential(),
     );
-
-    logi('$runtimeType created with state `$state`.');
   }
 
   Future<void> _onEvent(
     AimEvent event,
     Emitter<AimState> emit,
   ) async {
-    logi('$event');
-
     try {
       return switch (event) {
-        // initializing events
         InitializingAimEvent e => _onInitializing(e, emit),
         SetTapEffectAimEvent e => _onSetTapEffect(e, emit),
         TapEffectAimEvent e => _onTapEffectAimEvent(e, emit),
@@ -45,8 +39,8 @@ class AimBloc extends Bloc<AimEvent, AimState> {
         AimEvent e => throw UnsupportedError('$e'),
       };
     } catch (ex) {
-      loge(ex);
       add(const WaitingAimEvent());
+      rethrow;
     }
   }
 

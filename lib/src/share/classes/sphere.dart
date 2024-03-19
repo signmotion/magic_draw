@@ -1,4 +1,4 @@
-part of 'share.dart';
+part of '../share.dart';
 
 class Sphere extends StatelessWidget {
   const Sphere({

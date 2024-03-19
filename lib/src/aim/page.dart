@@ -9,12 +9,8 @@ class AimPage extends StatelessWidget {
   final AimBloc aimBloc;
 
   @override
-  Widget build(BuildContext context) {
-    logi('Build content $runtimeType');
-
-    return BlocProvider(
-      create: (context) => aimBloc..add(const InitializingAimEvent()),
-      child: const AimContent(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => aimBloc..add(const InitializingAimEvent()),
+        child: const AimContent(),
+      );
 }

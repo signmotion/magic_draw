@@ -19,8 +19,6 @@ class GestureLayer extends StatelessWidget {
       );
 
   void onTapDown(BuildContext context, TapDownDetails details) {
-    logi(details.globalPosition);
-
     final pool = manaBloc.state.pool;
     final filledCell = pool.filledCell();
     if (filledCell == -1) {
@@ -35,7 +33,6 @@ class GestureLayer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     // TODO(sign): Detect a real mana position.
     final manaPosition = Offset(size.width / 2, size.height);
-    logi('manaPosition $manaPosition -> tapPosition $tapPosition');
     pathBloc.add(ConstructPathEvent(
       fromPosition: manaPosition,
       toPosition: tapPosition,

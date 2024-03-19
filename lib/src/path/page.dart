@@ -9,12 +9,8 @@ class PathPage extends StatelessWidget {
   final PathBloc pathBloc;
 
   @override
-  Widget build(BuildContext context) {
-    logi('Build content $runtimeType');
-
-    return BlocProvider(
-      create: (context) => pathBloc..add(const InitializingPathEvent()),
-      child: const PathContent(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider(
+        create: (context) => pathBloc..add(const InitializingPathEvent()),
+        child: const PathContent(),
+      );
 }

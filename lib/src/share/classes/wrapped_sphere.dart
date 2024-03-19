@@ -1,4 +1,4 @@
-part of 'share.dart';
+part of '../share.dart';
 
 /// TODO(sign): Extract to package `brownian_animate`?
 class WrappedSphere extends StatefulWidget {
