@@ -1,7 +1,7 @@
 name: magic_draw
 description: >-
   A widget for custom canvas with animated magic effects.
-  Feel free to use it in your projects.
+  Feel free to use it in your awesome project.
 repository: https://github.com/signmotion/magic_draw
 topics:
   - canvas
@@ -40,5 +40,5 @@ flutter:
   uses-material-design: true
 
 screenshots:
-  - description: "MagicDraw demo"
-    path: images/screenshots/1.gif
+  - description: "MagicDraw preview"
+    path: images/screenshots/preview.webp
