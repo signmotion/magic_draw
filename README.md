@@ -4,7 +4,7 @@
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Pub Package](https://img.shields.io/badge/doc-magic_draw-blue)](https://pub.dartlang.org/packages/magic_draw)
-[![Build Status](https://github.com/signmotion/magic_draw/actions/workflows/dart-ci.yml/badge.svg)](https://github.com/signmotion/magic_draw/actions/workflows/dart-ci.yml)
+[![Build Status](https://github.com/signmotion/magic_draw/actions/workflows/dart-ci.yml/badge.svg)](https://github.com/signmotion/magic_draw/actions/workflows/flutter-ci.yml)
 [![Publisher](https://img.shields.io/pub/publisher/magic_draw)](https://pub.dev/publishers/syrokomskyi.com)
 
 A widget for custom canvas with animated magic effects.
