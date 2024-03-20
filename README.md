@@ -43,4 +43,5 @@ General questions are best asked on
 
 ## TODO
 
+- Detect a real mana position.
 - Drawing a path.
