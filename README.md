@@ -2,18 +2,33 @@
 
 ![Cover - MagicDraw](https://raw.githubusercontent.com/signmotion/magic_draw/master/images/cover.webp)
 
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/signmotion/magic_draw/master/LICENSE)
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Pub Package](https://img.shields.io/badge/doc-magic_draw-blue)](https://pub.dartlang.org/packages/magic_draw)
+[![Build Status](https://github.com/signmotion/magic_draw/actions/workflows/dart-ci.yml/badge.svg)](https://github.com/signmotion/magic_draw/actions/workflows/dart-ci.yml)
+[![Publisher](https://img.shields.io/pub/publisher/magic_draw)](https://pub.dev/publishers/syrokomskyi.com)
 
 A widget for custom canvas with animated magic effects.
-Feel free to use it in your projects.
+Feel free to use it in your awesome projects.
 
 ## Usage
 
 ```dart
-TODO
+void initState() {
+  super.initState();
+  magic = MagicDraw();
+  // init code, see `example/lib/main.dart`
+}
+
+late final MagicDraw magic;
+
+Widget build(BuildContext context) => MaterialApp(
+  home: Scaffold(
+    body: SafeArea(child: magic),
+  ),
+);
 ```
 
-TODO
+![Screenshot - MagicDraw](https://raw.githubusercontent.com/signmotion/magic_draw/master/images/screenshots/1.gif)
 
 ## Welcome
 
@@ -28,4 +43,4 @@ General questions are best asked on
 
 ## TODO
 
-...
+- Drawing a path.
