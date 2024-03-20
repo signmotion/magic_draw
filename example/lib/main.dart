@@ -22,13 +22,10 @@ class _AppState extends State<App> {
 
     magic.background.add(
       SetContentBackgroundEvent(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Image.asset(
-            key: UniqueKey(),
-            'assets/images/castle_1024x.webp',
-            fit: BoxFit.cover,
-          ),
+        child: Image.asset(
+          key: UniqueKey(),
+          'assets/images/fairy_tale.webp',
+          fit: BoxFit.cover,
         ),
       ),
     );
