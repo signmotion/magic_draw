@@ -8,7 +8,7 @@
 [![Publisher](https://img.shields.io/pub/publisher/magic_draw)](https://pub.dev/publishers/syrokomskyi.com)
 
 A widget for custom canvas with animated magic effects.
-Feel free to use it in your awesome projects.
+Feel free to use it in your awesome project.
 
 ## Usage
 
