@@ -10,6 +10,7 @@ topics:
   - custom
   - widget
 
+# Compatible with https://semver.org
 # Format:
 #   version: major.minor.patch
 # You can calculate the number version code by this formula:
@@ -21,15 +22,15 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  bloc_concurrency: ^0.2.4
+  bloc_concurrency: ^0.2.5
   equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0
-  flutter_bloc: ^8.1.4
+  flutter_bloc: ^8.1.5
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
+  flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
   lints: ^3.0.0
