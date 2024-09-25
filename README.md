@@ -1,27 +1,27 @@
 # Magic Draw
 
+![SDK version](https://badgen.net/pub/sdk-version/magic_draw?style=for-the-badge)
+![Supported platforms](https://badgen.net/pub/flutter-platform/magic_draw?style=for-the-badge)
+![Supported SDKs](https://badgen.net/pub/dart-platform/magic_draw?style=for-the-badge)
+
 ![Cover - Magic Draw](https://raw.githubusercontent.com/signmotion/magic_draw/master/images/cover.webp)
 
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Pub Package](https://img.shields.io/pub/v/magic_draw.svg?logo=dart&logoColor=00b9fc&color=blue)](https://pub.dartlang.org/packages/magic_draw)
-[![Code Size](https://img.shields.io/github/languages/code-size/signmotion/magic_draw?logo=github&logoColor=white)](https://github.com/signmotion/magic_draw)
-[![Publisher](https://img.shields.io/pub/publisher/magic_draw)](https://pub.dev/publishers/syrokomskyi.com)
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Pub Package](https://img.shields.io/pub/v/magic_draw.svg?logo=dart&logoColor=00b9fc&color=blue&style=for-the-badge)](https://pub.dartlang.org/packages/magic_draw)
+[![Code Size](https://img.shields.io/github/languages/code-size/signmotion/magic_draw?logo=github&logoColor=white&style=for-the-badge)](https://github.com/signmotion/magic_draw)
+[![Publisher](https://img.shields.io/pub/publisher/magic_draw?style=for-the-badge)](https://pub.dev/publishers/syrokomskyi.com)
 
-![SDK version](https://badgen.net/pub/sdk-version/magic_draw)
-![Supported platforms](https://badgen.net/pub/flutter-platform/magic_draw)
-![Supported SDKs](https://badgen.net/pub/dart-platform/magic_draw)
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/signmotion/magic_draw/flutter-ci.yml?logo=github-actions&logoColor=white)](https://github.com/signmotion/magic_draw/actions)
-[![Pull Requests](https://img.shields.io/github/issues-pr/signmotion/magic_draw?logo=github&logoColor=white)](https://github.com/signmotion/magic_draw/pulls)
-[![Issues](https://img.shields.io/github/issues/signmotion/magic_draw?logo=github&logoColor=white)](https://github.com/signmotion/magic_draw/issues)
-[![Pub Score](https://img.shields.io/pub/points/magic_draw?logo=dart&logoColor=00b9fc)](https://pub.dev/packages/magic_draw/score)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/signmotion/magic_draw/flutter-ci.yml?logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/signmotion/magic_draw/actions)
+[![Pull Requests](https://img.shields.io/github/issues-pr/signmotion/magic_draw?logo=github&logoColor=white&style=for-the-badge)](https://github.com/signmotion/magic_draw/pulls)
+[![Issues](https://img.shields.io/github/issues/signmotion/magic_draw?logo=github&logoColor=white&style=for-the-badge)](https://github.com/signmotion/magic_draw/issues)
+[![Pub Score](https://img.shields.io/pub/points/magic_draw?logo=dart&logoColor=00b9fc&style=for-the-badge)](https://pub.dev/packages/magic_draw/score)
 
 A widget for custom canvas with animated magic effects.
 Feel free to use it in your awesome project.
 
-[![CodeFactor](https://codefactor.io/repository/github/signmotion/magic_draw/badge)](https://codefactor.io/repository/github/signmotion/magic_draw)
+[![CodeFactor](https://codefactor.io/repository/github/signmotion/magic_draw/badge?style=for-the-badge)](https://codefactor.io/repository/github/signmotion/magic_draw)
 
-Share some ❤️ and star repo to support the project.
+Share some ❤️ and star repo to support the [Magic Draw](https://github.com/signmotion/magic_draw).
 
 _If you write an article about **MagicDraw** or any of [these](https://pub.dev/packages?q=publisher%3Asyrokomskyi.com&sort=updated) packages, let me know and I'll post the URL of the article in the **README**_ 🤝
 
@@ -88,4 +88,8 @@ Once you start using the **MagicDraw**, it will become easy to choose the functi
 
 It's just a habit of mine: writing down ideas that come to mind while working on a project. I confess that I rarely return to these notes. But now, hopefully, even if you don't have an idea yet, the above notes will help you choose the suitable "feature" and become a contributor to the open-source community.
 
-Created [with ❤️](https://syrokomskyi.com)
+Ready [for 🪙](https://webduet.de "The Modern Planet-Scale Site for Your Ambitions")
+
+Created [with ❤️](https://syrokomskyi.com "Andrii Syrokomskyi")
+
+[![fresher](https://img.shields.io/badge/maintained%20using-fresher-darkgreen.svg?style=for-the-badge)](https://github.com/signmotion/fresher "Keeps Projects Up to Date")
